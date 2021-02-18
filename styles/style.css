@@ -2,7 +2,7 @@
 
 
 body {
-    background-image: url("../assets/images/navy.jpg");
+    background-image: url("../assets/images/background.jpg");
 background-size: auto;
 }
 
@@ -56,7 +56,7 @@ h1 {
 
 .card .suit
 {
-	background-image: url('../assets/images/card-suits-set_1284-8208-removebg-preview (1).png');
+	background-image: url('../assets/images/suits.png');
     background-size: auto;
 
 	height: 6.25rem;
