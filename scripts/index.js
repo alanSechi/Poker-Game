@@ -28,7 +28,7 @@ function shuffle() {
 //functions that are triggered when the page load
 function load() {
   alert(
-    "WARNING! Each card have points, 2 = 2... till 10 = 10, then J = 11, Q = 12, K = 13, A = 14"
+    "ATTENTION! Each card has points, 2 = 2 ... 10 = 10, then J = 11, Q = 12, K = 13, A = 14"
   );
   shuffle();
   var shuffledDeck = deck.slice(0, 5);
