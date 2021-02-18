@@ -41,6 +41,7 @@ window.onload = load;
 function checkPoints(shuffledDeck) {
   //array of points and suits
   let point = [];
+  let sortedPoints = point.sort();
   let suit = [];
   let card1 = shuffledDeck[0].points;
   let suit1 = shuffledDeck[0].type;
@@ -76,22 +77,22 @@ function checkPoints(shuffledDeck) {
   function checkFlush() {
     var flush = [];
     if (
-      point[0] === 10 &&
-      checkConsecutive(point) === true &&
+      sortedPoints[0] === 10 &&
+      checkConsecutive(sortedPoints) === true &&
       sameSuit(suit) === true
     ) {
       flush.push("royal flush");
     }
 
-    if (checkConsecutive(point) === true && sameSuit(suit) === true) {
+    if (checkConsecutive(sortedPoints) === true && sameSuit(suit) === true) {
       flush.push("straight flush");
     }
 
-    if (checkConsecutive(point) === true && sameSuit(suit) === false) {
+    if (checkConsecutive(sortedPoints) === true && sameSuit(suit) === false) {
       flush.push("straight");
     }
 
-    if (checkConsecutive(point) === false && sameSuit(suit) === true) {
+    if (checkConsecutive(sortedPoints) === false && sameSuit(suit) === true) {
       flush.push("flush");
     }
     return flush;
@@ -119,10 +120,10 @@ function checkPoints(shuffledDeck) {
   if (checkFlush() == "straight") {
     hand.innerHTML = "STRAIGHT";
   }
-  if (checkFlush() == "straight flush") {
+  if (checkFlush()[0] == "straight flush") {
     hand.innerHTML = "STRAIGHT FLUSH";
   }
-  if (checkFlush() == "royal flush") {
+  if (checkFlush()[0] == "royal flush") {
     hand.innerHTML = "ROYAL FLUSH";
   }
   if (
