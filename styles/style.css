@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+
+body {
+    background-image: url("../assets/images/navy.jpg");
+background-size: auto;
+}
+
+h1 {
+	font-size: 3rem;
+}
+
+.deck
+{
+	width:70%;
+	margin: 1.25rem auto;
+	background: url("https://images.squarespace-cdn.com/content/v1/589135c903596e466b814f4c/1520907223472-YAKUGIB3ELBUS4MK90R9/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/poker_tournament_landscape_tv_full_hd.jpg?format=2500w");
+    background-size: cover;
+    /*background-position-x: 73px;*/
+	border:solid 1.875rem black;
+	border-width: 2.5rem;
+	padding: 0.625rem;
+	border-radius:18rem;
+	text-align: center;
+	color:blue;
+	font-family: 'Monoton', cursive;;
+}
+
+.card
+{
+	padding: 0.625rem;
+	border: solid 0.063rem #808080;
+	background-color: white;
+	display: inline-block;
+	border-radius: 0.625rem;
+	font-size: 1.167rem;
+	text-align: center;
+	color:black;
+	margin: 0.188rem;
+}
+
+.btn
+{
+	background:white;
+	padding: 10px 20px;
+	border-radius:30px;
+	margin: 10px;
+	display:inline-block;
+	font-size: 1rem;
+}
+
+.card .value{
+	font-size:2.5rem;
+	font-family: sans-serif;
+}
+
+.card .suit
+{
+	background-image: url('../assets/images/card-suits-set_1284-8208-removebg-preview (1).png');
+    background-size: auto;
+
+	height: 6.25rem;
+	width: 5.625rem;
+    text-align: center;
+}
+
+.card .diamonds
+{
+	background-position-y: 115px;
+    background-position-x: 108px;
+    background-size: 230px;
+}
+
+.card .hearts
+{
+    background-position-y: 215px;
+    background-position-x: 206px;
+    background-size: 230px;
+}
+
+.card .clubs
+{
+	background-position-y: 330px;
+    background-position-x: 200px;
+    background-size: 220px;
+}
+.card .spades {
+    background-position-y: 216px;
+    background-position-x: 338px;
+    background-size: 230px;
+} 
+
+#hand {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
