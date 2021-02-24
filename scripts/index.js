@@ -1,17 +1,15 @@
 //import of all the modules
-import { deck } from "./deck.js";
+import { getDeck } from "./deck.js";
 import { randomize } from "./randomizeDeck.js";
 import { renderDeck } from "./renderDeck.js";
-import { checkPair } from "./checkPair.js";
-import { checkTris } from "./checkTris.js";
-import { checkPoker } from "./checkPoker.js";
+import { countElements } from "./countElements.js";
 import { checkConsecutive } from "./checkConsecutive.js";
 import { sameSuit } from "./checkSuits.js";
 
 //defining the global variables
 let btn = document.getElementById("mix");
 let hand = document.getElementById("hand");
-
+let deck = getDeck();
 //button click event
 btn.onclick = function () {
   shuffle();
@@ -27,9 +25,6 @@ function shuffle() {
 
 //functions that are triggered when the page load
 function load() {
-  alert(
-    "ATTENTION! Each card has points, 2 = 2 ... 10 = 10, then J = 11, Q = 12, K = 13, A = 14"
-  );
   shuffle();
   var shuffledDeck = deck.slice(0, 5);
   checkPoints(shuffledDeck);
@@ -40,99 +35,75 @@ window.onload = load;
 //function to calculate the hands
 function checkPoints(shuffledDeck) {
   //array of points and suits
-  let point = [];
-  let sortedPoints = point.sort();
-  let suit = [];
-  let card1 = shuffledDeck[0].points;
-  let suit1 = shuffledDeck[0].type;
-
-  let card2 = shuffledDeck[1].points;
-  let suit2 = shuffledDeck[1].type;
-
-  let card3 = shuffledDeck[2].points;
-  let suit3 = shuffledDeck[2].type;
-
-  let card4 = shuffledDeck[3].points;
-  let suit4 = shuffledDeck[3].type;
-
-  let card5 = shuffledDeck[4].points;
-  let suit5 = shuffledDeck[4].type;
-
-  point.push(card1, card2, card3, card4, card5);
-  suit.push(suit1, suit2, suit3, suit4, suit5);
+  const point = [
+    shuffledDeck[0].points,
+    shuffledDeck[1].points,
+    shuffledDeck[2].points,
+    shuffledDeck[3].points,
+    shuffledDeck[4].points,
+  ];
+  const sortedPoints = point.sort();
+  const suit = [
+    shuffledDeck[0].type,
+    shuffledDeck[1].type,
+    shuffledDeck[2].type,
+    shuffledDeck[3].type,
+    shuffledDeck[4].type,
+  ];
+  const noDupl = countElements(point);
 
   //this gives to me the card with the highest point
-  var max = Math.max(point[0], point[1], point[2], point[3], point[4]);
+  const max = Math.max(...sortedPoints);
 
-  //this function if there is a double pair and a tris returns the write "full"
-  function checkFull() {
-    var full = [];
-    if (checkTris(point).length >= 1 && checkPair(point).length == 2) {
-      full.push("full");
-    }
-    return full;
-  }
-
-  //this checks if the cards are consecutive and have the same suits
-  function checkFlush() {
-    var flush = [];
+  //this enter inside if all the cards are not equal
+  if (noDupl.length === 5) {
     if (
       sortedPoints[0] === 10 &&
       checkConsecutive(sortedPoints) === true &&
+      sameSuit(suit) == true
+    ) {
+      hand.innerHTML = "ROYAL FLUSH";
+    } else if (
+      checkConsecutive(sortedPoints) === true &&
+      sameSuit(suit) == true
+    ) {
+      hand.innerHTML = "STRAIGHT FLUSH";
+    } else if (
+      checkConsecutive(sortedPoints) === true &&
+      sameSuit(suit) === false
+    ) {
+      hand.innerHTML = "STRAIGHT";
+    } else if (
+      checkConsecutive(sortedPoints) === false &&
       sameSuit(suit) === true
     ) {
-      flush.push("royal flush");
+      hand.innerHTML = "FLUSH";
+    } else {
+      if (max == 11) {
+        hand.innerHTML = "HIGH CARD: J";
+      } else if (max == 12) {
+        hand.innerHTML = "HIGH CARD: Q";
+      } else if (max == 13) {
+        hand.innerHTML = "HIGH CARD: K";
+      } else if (max == 14) {
+        hand.innerHTML = "HIGH CARD: A";
+      } else {
+        hand.innerHTML = "HIGH CARD: " + max;
+      }
     }
-
-    if (checkConsecutive(sortedPoints) === true && sameSuit(suit) === true) {
-      flush.push("straight flush");
+  } else {
+    for (var i = 0; i <= noDupl.length; i++) {
+      if (noDupl.length === 4) {
+        hand.innerHTML = "PAIR";
+      } else if (noDupl.length == 3 && noDupl[i] == 2) {
+        hand.innerHTML = "DOUBLE PAIR";
+      } else if (noDupl.length == 3 && noDupl[i] == 3) {
+        hand.innerHTML = "TRIS";
+      } else if (noDupl.length == 2 && noDupl[i] == 2) {
+        hand.innerHTML = "FULL";
+      } else if (noDupl.length == 2 && noDupl[i] == 4) {
+        hand.innerHTML = "POKER";
+      }
     }
-
-    if (checkConsecutive(sortedPoints) === true && sameSuit(suit) === false) {
-      flush.push("straight");
-    }
-
-    if (checkConsecutive(sortedPoints) === false && sameSuit(suit) === true) {
-      flush.push("flush");
-    }
-    return flush;
-  }
-
-  //this group of if's displays the value of the hands
-  if (checkPair(point).length == 1) {
-    hand.innerHTML = "PAIR";
-  }
-  if (checkPair(point).length == 2) {
-    hand.innerHTML = "TWO PAIR";
-  }
-  if (checkTris(point).length == 1) {
-    hand.innerHTML = "THREE OF A KIND";
-  }
-  if (checkPoker(point).length == 1) {
-    hand.innerHTML = "FOUR OF A KIND";
-  }
-  if (checkFull() == "full") {
-    hand.innerHTML = "FULL HOUSE";
-  }
-  if (checkFlush() == "flush") {
-    hand.innerHTML = "FLUSH";
-  }
-  if (checkFlush() == "straight") {
-    hand.innerHTML = "STRAIGHT";
-  }
-  if (checkFlush()[0] == "straight flush") {
-    hand.innerHTML = "STRAIGHT FLUSH";
-  }
-  if (checkFlush()[0] == "royal flush") {
-    hand.innerHTML = "ROYAL FLUSH";
-  }
-  if (
-    checkPair(point).length == 0 &&
-    checkTris(point).length == 0 &&
-    checkPoker(point).length == 0 &&
-    checkFull().length == 0 &&
-    checkFlush().length == 0
-  ) {
-    hand.innerHTML = "HIGH CARD " + max;
   }
 }
