@@ -2,8 +2,8 @@
 
 
 body {
-    background-image: url("../assets/images/background.jpg");
-background-size: auto;
+    background-image: url("https://i.pinimg.com/originals/b1/39/96/b13996f663880163dcb0918023222562.jpg");
+background-size: cover;
 }
 
 h1 {
@@ -14,15 +14,15 @@ h1 {
 {
 	width:70%;
 	margin: 1.25rem auto;
-	background: url("https://images.squarespace-cdn.com/content/v1/589135c903596e466b814f4c/1520907223472-YAKUGIB3ELBUS4MK90R9/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/poker_tournament_landscape_tv_full_hd.jpg?format=2500w");
-    background-size: cover;
+	background: url("https://media.istockphoto.com/vectors/black-seamless-pattern-fabric-poker-table-minimalistic-casino-vector-vector-id651780598?b=1&k=6&m=651780598&s=612x612&w=0&h=W6cbfrOvKH0qhNH7yuJG7b_EqtxvmBZwDWSsUlYwqag=");
+    background-size: contain;
     /*background-position-x: 73px;*/
 	border:solid 1.875rem black;
 	border-width: 2.5rem;
 	padding: 0.625rem;
 	border-radius:18rem;
 	text-align: center;
-	color:blue;
+	color:#fdbc02;
 	font-family: 'Monoton', cursive;;
 }
 
